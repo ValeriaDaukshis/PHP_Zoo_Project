@@ -9,7 +9,6 @@
 		<div id="page">
 			<header>
                 <?php  include 'UserName.php';
-                include 'statistics.php';
                 ?>
 				<a href="index.php" id="logo"><img src="images/logo-page.jpg" alt="логотип"/></a>
 				<ul id="navigation">

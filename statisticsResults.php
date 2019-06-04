@@ -59,13 +59,13 @@
                 {
                     if( $row['Date'] === $dateToday)
                     {
-                        $today++;
+                        $today+=$row['Time'];
                     }
                     if ($row['Date'] >= $dateWeek){
-                        $week++;
+                        $week+=$row['Time'];
                     }
                     if ($row['Date'] >= $dateMonth){
-                        $month++;
+                        $month+=$row['Time'];
                     }
                 }
 
@@ -74,29 +74,7 @@
                 echo '<h4 align="center">On this Week: '.$week.'</h4>';
                 echo '<h4 align="center">On this Month: '.$month.'</h4>';
                 $db = null;
-            /*session_start();
 
-            function GetUsersOnline(){
-                //clearstatcache();
-                $SessionDir = session_save_path();
-                $Timeout = 60 * 3;
-                if ($Handler = scandir ($SessionDir)){
-                    $count = count ($Handler);
-                    $users = 0;
-
-                    for ($i = 2; $i < $count; $i++){
-                        if (time() - fileatime ($SessionDir . '/' . $Handler[$i]) < $Timeout){
-                            $users++;
-                        }
-                    }
-
-                    return $users;
-                } else {
-                    return 'error';
-                }
-            }
-
-            echo 'Online: ' . GetUsersOnline();*/
             ?>
         </div>
 

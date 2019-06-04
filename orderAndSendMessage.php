@@ -57,28 +57,24 @@
                 $headers .= "Reply-To: daukshislera@mail.ru\r\n";
                 $addr;
                 $isWriten = false;
-                foreach($_COOKIE as $key => $val)
-                    if($key==='Email'){
-                        $addr = $val;
+
+                    if(isset($_SESSION['email'])){
+                        $addr = $_SESSION['email'];
+                        $isWriten = true;
                         if(mail($addr, $theme, $thisText, $headers))
                         {
-                            $isWriten = true;
                             ?>
                         <h2>Order is accepted</h2>
                             <?php
-                            break;
-                            //header('Location: http://localhost:8080/zootemplate/zootemplate/index.php');
 
-                            //exit;
                         }
-                        else
+                        else{
                             ?>
                             <h2>Smth wrong. Pleese try again</h2>
                             <?php
-                        $isWriten = true;
-                        break;
+                        }
                     }
-                if (!$isWriten)
+                else
                 {
                     ?>
                     <h2>Log In to order tickets</h2>

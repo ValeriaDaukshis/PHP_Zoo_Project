@@ -33,7 +33,7 @@
             <li id="link4" class="selected"><a href="tickets.php">Tickets</a></li>
             <li id="link5"><a href="events.php">Events</a></li>
             <li id="link6"><a href="gallery.php">Gallery</a></li>
-            <li id="link7"><a href="contact.php">Contact Us</a></li>
+            <li id="link7"><a href="contact.php">Log In</a></li>
         </ul>
     </header>
     <main id="content">

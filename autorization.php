@@ -7,37 +7,42 @@ if (isset($_POST['name']) & isset($_POST['password']) )
     $isWriten = true;
 }
 
-if ($isWriten )
-{
+if ($isWriten ) {
     include 'requestToDataBase.php';
 
-    $a=$db->query("SELECT * FROM usersdata");
+    $a = $db->query("SELECT * FROM usersdata");
     $bool = false;
-    while ($row=$a->fetch(PDO::FETCH_ASSOC))
-    {
-        if($row['Password']=== sha1($password) & $row['Name']===$name )
-        {
+    while ($row = $a->fetch(PDO::FETCH_ASSOC)) {
+        if ($row['Password'] === sha1($password) & $row['Name'] === $name) {
             $bool = true;
             session_start();
-//            setcookie('Name',$name,time()+3600);
-//            setcookie('Email',$row['Email'],time()+3600);
             $_SESSION['time'] = time();
             $_SESSION['name'] = $name;
             $_SESSION['email'] = $row['Email'];
-            //setcookie('Time',$_SERVER['REQUEST_TIME'],time()+3600);
-            $idValue = $row['Id'];
-            $db ->exec("INSERT INTO statistics2 (Id, Date, Time) VALUES (".$db->quote($idValue).", ".$db->quote(date('Y-m-d')).",".$db->quote(time()).")");
 
-            header('Location: http://localhost:8080/zootemplate/zootemplate/index.php');
-            exit;
         }
     }
-    if(!$bool)
-    {
+    if (!$bool) {
         echo "Not correct name or password";
     }
-}
+    else
+    {
+        $bool2 = true;
+        $date =date('Y-m-d');
+        $a = $db->query("SELECT * FROM statistics2");
+        while ($row = $a->fetch(PDO::FETCH_ASSOC)) {
+            if ($row['Date'] === $date && $row['Name'] === $name) {
+                $db = null;
+                header('Location: http://localhost:8080/zootemplate/zootemplate/index.php');
+            }
+        }
 
+        $db->exec("INSERT INTO statistics2 ( Name, Date, Time) VALUES (" . $db->quote($name) . "," . $db->quote($date) . ", " . $db->quote(300) . ")");
+        $db = null;
+        header('Location: http://localhost:8080/zootemplate/zootemplate/index.php');
+
+    }
+}
 
 ?>
 

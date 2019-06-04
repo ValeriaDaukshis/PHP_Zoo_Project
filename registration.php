@@ -71,10 +71,7 @@
                         exit;
                     }
                 }
-
-                //$idValue = random_int(255, 999);
-                //$db ->exec("INSERT INTO usersdata (Id, Name, Password, Email) VALUES (".$db->quote($idValue).", ".$db->quote($name).",".$db->quote(sha1($password)).", ".$db->quote($email).")");
-                $db ->exec("INSERT INTO usersdata (Id, Name, Password, Email) VALUES (".$db->quote($idValue).", ".$db->quote($name).",".$db->quote(sha1($password)).", ".$db->quote($email).")");
+                $db ->exec("INSERT INTO usersdata ( Name, Password, Email) VALUES (".$db->quote($name).",".$db->quote(sha1($password)).", ".$db->quote($email).")");
                 $db = null;
                 ?>
                 <h2>Ok. Come to Registrate button</h2>
